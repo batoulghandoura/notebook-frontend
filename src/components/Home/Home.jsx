@@ -3,30 +3,30 @@ import './Home.css'
 
 export const Home = () => {
   return (
-    <div class="container">
-        <div class="header">
-        <img src="/images/icons8-document.svg" class="note-icon" alt="none"/>
+    <div className="container">
+        <div className="header">
+        <img src="/images/icons8-document.svg" className="note-icon" alt="none"/>
         <p>My Notes</p>
         </div>
 
         <p>Capture your thoughts ideas, and inspiration in beautiful, searchable notes</p>
       
-      <div class="top">
+      <div className="top">
         <div className='search'>
-          <img src='./././images/icons8-search.svg' class="search-icon" alt="Search"/>
+          <img src='./././images/icons8-search.svg' className="search-icon" alt="Search"/>
           <input type="text" placeholder="Search your notes..." id="searchInput"/>
         </div>
     
-      <button class="btn" id="newNoteBtn">+ &nbsp;New Note</button>
+      <button className="btn" id="newNoteBtn">+ &nbsp;New Note</button>
       </div>
     
     <br/><br/>
     
-     <div class="nonote" id="noNoteSection">
-        <img src="../images/icons8-document.svg" class="nonote-icon" alt="No notes"/>
-        <p class="message">No notes yet</p>
-        <p class="subtitle">Create your first note to get started</p>
-        <button class="input1">+ &nbsp; Create your first note</button>
+     <div className="nonote" id="noNoteSection">
+        <img src="../images/icons8-document.svg" className="nonote-icon" alt="No notes"/>
+        <p className="message">No notes yet</p>
+        <p className="subtitle">Create your first note to get started</p>
+        <button className="input1">+ &nbsp; Create your first note</button>
     </div>
     
  {/*
