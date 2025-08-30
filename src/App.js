@@ -5,47 +5,71 @@ import NewNote from './components/NewNote/NewNote';
 
 function App() {
     const [currentView, setCurrentView] = useState('home');
-    // 1. Create state for the array of notes. Start with an empty array.
     const [notes, setNotes] = useState([]);
+    // 1. NEW STATE: Track which note we are currently editing. Null means we are creating a new note.
+    const [currentNote, setCurrentNote] = useState(null);
 
-    // 2. Function to handle creating a new note
     const handleAddNewNote = (newNote) => {
-        // Create a new note object with a unique id
         const noteToAdd = {
-            id: Date.now(), // Simple way to get a unique id
+            id: Date.now(),
             title: newNote.title,
             content: newNote.content
         };
-        // Update the notes state by adding the new note to the existing array
         setNotes([...notes, noteToAdd]);
-        // Switch back to the home view
         setCurrentView('home');
     };
-    const handleDeleteNote = (idToDelete) => {
-        const updatedNotes = notes.filter(note => note.id !== idToDelete);
+
+    // 2. NEW FUNCTION: Handle UPDATING an existing note
+    const handleUpdateNote = (updatedNote) => {
+        // Map over the notes array. If we find the note with the matching ID, we replace it with the updated note.
+        const updatedNotes = notes.map((note) =>
+            note.id === currentNote.id ? {...updatedNote, id: currentNote.id } : note
+        );
         setNotes(updatedNotes);
+        setCurrentView('home');
+        // Reset the currentNote state after editing is done
+        setCurrentNote(null);
+    };
+
+    const handleDeleteNote = (idToDelete) => {
+        const updatedNotes = notes.filter((note) => note.id !== idToDelete);
+        setNotes(updatedNotes);
+    };
+
+    // 3. NEW FUNCTION: This function is called when the "Edit" button is clicked
+    const handleEditNote = (noteToEdit) => {
+        // Set the current note to be the one we want to edit
+        setCurrentNote(noteToEdit);
+        // Change the view to the form screen
+        setCurrentView('new-note');
     };
 
     return ( <
         div className = "App" > {
-            currentView === 'home' ? (
-                // 3. Pass the notes array and the function to change view to Home
-
-
-                <
+            currentView === 'home' ? ( <
                 Home notes = { notes }
                 onNewNoteClick = {
-                    () => setCurrentView('new-note')
+                    () => {
+                        setCurrentNote(null); // Ensure we are in "create" mode
+                        setCurrentView('new-note');
+                    }
                 }
                 onDeleteNote = { handleDeleteNote }
+                // 4. PASS THE EDIT FUNCTION AS A PROP
+                onEditNote = { handleEditNote }
                 />
             ) : (
-                // 4. Pass the function to save a new note and to cancel to NewNote
+                // 5. PASS THE CURRENT NOTE AND THE RIGHT SAVE FUNCTION TO NewNote
                 <
-                NewNote onSaveNote = { handleAddNewNote }
+                NewNote onSaveNote = { currentNote ? handleUpdateNote : handleAddNewNote } // If editing, use update. If not, use create.
                 onCancelClick = {
-                    () => setCurrentView('home')
+                    () => {
+                        setCurrentView('home');
+                        setCurrentNote(null); // Reset on cancel
+                    }
                 }
+                // 6. PASS THE EXISTING NOTE'S DATA TO PRE-FILL THE FORM
+                existingNote = { currentNote }
                 />
             )
         } <

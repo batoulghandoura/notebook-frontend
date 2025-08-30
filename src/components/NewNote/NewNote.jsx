@@ -1,31 +1,35 @@
 import React, { useState } from 'react';
 import './NewNote.css';
 
-// The component receives 'onSaveNote' and 'onCancelClick' as props
-const NewNote = ({ onSaveNote, onCancelClick }) => {
-  // 1. Create state for the note's title and content
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+// The component receives 'onSaveNote', 'onCancelClick', AND 'existingNote'
+const NewNote = ({ onSaveNote, onCancelClick, existingNote }) => {
+  console.log('Existing Note recieved in NewNote:', existingNote);
+  // 1. Initialize state with the existing note's data, or empty strings if it's a new note
+  const [title, setTitle] = useState(existingNote ? existingNote.title : '');
+  const [content, setContent] = useState(existingNote ? existingNote.content : '');
 
   // 2. Function to handle the form submission
   const handleSubmit = () => {
-    // Basic validation: don't save if title is empty
     if (title.trim() === '') {
       alert('Please add a title for your note.');
       return;
     }
-    // Call the function passed from App.js with the new note data
+    // Call the save function (could be add or update) with the form data
     onSaveNote({ title, content });
-    // Clear the form fields
-    setTitle('');
-    setContent('');
+
+    // 3. ONLY reset the form if we are creating a NEW note
+    if (!existingNote) {
+      setTitle('');
+      setContent('');
+    }
   };
 
   return (
     <div className="container">
       <div className="header">
-        <img src="/images/icons6-document.svg" className="note-icon" alt="Notes icon"/>
-        <p>New Note</p>
+       <img src="https://cdn.jsdelivr.net/npm/heroicons@v1.0.1/outline/document.svg" className="note-icon" alt="note" />
+        {/* 4. Change the heading based on the mode */}
+        <p>{existingNote ? 'Edit Note' : 'New Note'}</p>
       </div>
 
       <label htmlFor="note-title" style={{display: 'none'}}>Title</label>
@@ -34,7 +38,6 @@ const NewNote = ({ onSaveNote, onCancelClick }) => {
         type="text"
         placeholder="Title"
         className="input1"
-        // 3. Connect input to state
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
@@ -44,16 +47,15 @@ const NewNote = ({ onSaveNote, onCancelClick }) => {
         id="note-content"
         placeholder="Start writing your note..."
         className="input2"
-        // 4. Connect textarea to state
         value={content}
         onChange={(e) => setContent(e.target.value)}
       ></textarea>
       
       <br/>
       <div className="button-container">
-        {/* 5. Connect the Save button to the handleSubmit function */}
+        {/* 5. Change the button text based on the mode */}
         <button className="btn" onClick={handleSubmit}>
-          Save Note
+          {existingNote ? 'Update Note' : 'Save Note'}
         </button>
         <button className="cancel" onClick={onCancelClick}>
           Cancel

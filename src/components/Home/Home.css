@@ -1,156 +1,164 @@
- body {
-     font-family: Arial, sans-serif;
-     background-color: #f4f4f4;
-     margin: 0;
-     padding: 20px;
- }
- 
- .container {
-     max-width: 800px;
-     margin: 0 auto;
-     background: #fff;
-     padding: 20px;
-     border-radius: 8px;
-     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
- }
- 
- .header {
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     gap: 8px;
-     margin-top: 30px;
-     margin-bottom: 20px;
- }
- 
- .note-icon {
-     width: 40px;
- }
- 
- .header p {
-     color: black;
-     margin: 7px 0 0 0;
-     font-size: 24px;
-     font-weight: bold;
- }
- 
- .container>p {
-     margin-bottom: 30px;
-     color: #666;
-     text-align: center;
-     font-size: 16px;
-     margin-top: 0;
- }
- 
- .top {
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
- }
- 
- .search {
-     flex: 1;
-     margin-right: 20px;
-     position: relative;
- }
- 
- .search input {
-     width: 100%;
-     border: 1px solid #ccc;
-     padding: 10px 10px 10px 40px;
-     border-radius: 5px;
-     box-sizing: border-box;
-     background-color: #f9f9f9;
- }
- 
- .search-icon {
-     position: absolute;
-     left: 10px;
-     top: 50%;
-     transform: translateY(-50%);
-     width: 20px;
-     height: 20px;
- }
- 
- .btn {
-     background: #2079e9;
-     color: #fff;
-     border: none;
-     padding: 10px 15px;
-     border-radius: 5px;
-     cursor: pointer;
- }
- 
- .btn:hover {
-     background-color: #1868cb;
- }
- 
- .nonote {
-     text-align: center;
-     margin-top: 50px;
- }
- 
- .nonote-icon {
-     width: 60px;
-     opacity: 0.5;
- }
- 
- .message {
-     font-size: 18px;
-     color: #555;
-     margin-bottom: 5px;
- }
- 
- .subtitle {
-     color: #999;
-     margin-top: 0;
-     margin-bottom: 20px;
- }
- 
- .input1 {
-     border: 1px solid #ccc;
-     padding: 10px 20px;
-     border-radius: 5px;
-     background-color: #2079e9;
-     color: white;
-     cursor: pointer;
-     font-size: 14px;
-     border: none;
- }
- 
- .input1:hover {
-     background-color: #1868cb;
- }
- /* Styles for the notes grid and cards */
- 
- .notes {
-     margin-top: 20px;
-     display: grid;
-     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-     gap: 20px;
- }
- 
- .note {
-     background: #ffffff;
-     padding: 15px;
-     border: 1px solid #eee;
-     border-radius: 8px;
-     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
- }
- 
- .note h3 {
-     margin-top: 0;
-     color: #333;
- }
- 
- .note p {
-     color: #666;
-     white-space: pre-wrap;
-     /* Preserves line breaks in the note content */
- }
- 
- .actions {
-     margin-top: 10px;
-     display: flex;
-     justify-content: space-between;
- }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+/* This centers the icon and "My Notes" text as a group */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Centers the icon and text together */
+    gap: 8px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.note-icon {
+    width: 40px;
+}
+
+.header p {
+    color: black;
+    margin: 7px 0 0 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.container>p {
+    margin-bottom: 30px;
+    color: #666;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 0;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search {
+    flex: 1;
+    margin-right: 20px;
+    position: relative;
+    width: 100%;
+}
+
+.search input {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px 10px 10px 40px;
+    /* Left padding makes space for the icon */
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+}
+
+.btn {
+    background: #2079e9;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #1868cb;
+}
+
+.nonote {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.nonote-icon {
+    width: 60px;
+    opacity: 0.5;
+}
+
+.message {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #999;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.input1 {
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #2079e9;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    border: none;
+}
+
+.input1:hover {
+    background-color: #1868cb;
+}
+
+
+/* Styles for the notes grid and cards */
+
+.notes {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.note {
+    background: #ffffff;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.note h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.note p {
+    color: #666;
+    white-space: pre-wrap;
+    /* Preserves line breaks in the note content */
+}
+
+.actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
