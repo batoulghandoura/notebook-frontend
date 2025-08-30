@@ -44,36 +44,37 @@ function App() {
         setCurrentView('new-note');
     };
 
-    return ( <
-        div className = "App" > {
-            currentView === 'home' ? ( <
-                Home notes = { notes }
-                onNewNoteClick = {
-                    () => {
-                        setCurrentNote(null); // Ensure we are in "create" mode
-                        setCurrentView('new-note');
-                    }
-                }
-                onDeleteNote = { handleDeleteNote }
-                // 4. PASS THE EDIT FUNCTION AS A PROP
-                onEditNote = { handleEditNote }
-                />
-            ) : (
-                // 5. PASS THE CURRENT NOTE AND THE RIGHT SAVE FUNCTION TO NewNote
-                <
-                NewNote onSaveNote = { currentNote ? handleUpdateNote : handleAddNewNote } // If editing, use update. If not, use create.
-                onCancelClick = {
-                    () => {
-                        setCurrentView('home');
-                        setCurrentNote(null); // Reset on cancel
-                    }
-                }
-                // 6. PASS THE EXISTING NOTE'S DATA TO PRE-FILL THE FORM
-                existingNote = { currentNote }
-                />
-            )
-        } <
-        /div>
+    return ( 
+    <div className = "App"> 
+   
+    { currentView === 'home' ? ( 
+      <Home 
+        notes = {notes}
+        onNewNoteClick = {
+            () => {
+                setCurrentNote(null); // Ensure we are in "create" mode
+                setCurrentView('new-note');
+            }
+        }
+        onDeleteNote = {handleDeleteNote}
+        // 4. PASS THE EDIT FUNCTION AS A PROP
+        onEditNote = {handleEditNote}
+        />
+    ) : (
+        // 5. PASS THE CURRENT NOTE AND THE RIGHT SAVE FUNCTION TO NewNote
+        <NewNote 
+        onSaveNote = {currentNote ? handleUpdateNote : handleAddNewNote} // If editing, use update. If not, use create.
+        onCancelClick = {
+            () => {
+                setCurrentView('home');
+                setCurrentNote(null); // Reset on cancel
+            }
+        }
+        // 6. PASS THE EXISTING NOTE'S DATA TO PRE-FILL THE FORM
+        existingNote = {currentNote}
+        />
+    )} 
+    </div>
     );
 }
 

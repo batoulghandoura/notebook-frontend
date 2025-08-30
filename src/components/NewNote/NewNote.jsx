@@ -27,8 +27,8 @@ const NewNote = ({ onSaveNote, onCancelClick, existingNote }) => {
   return (
     <div className="container">
       <div className="header">
-       <img src="https://cdn.jsdelivr.net/npm/heroicons@v1.0.1/outline/document.svg" className="note-icon" alt="note" />
-        {/* 4. Change the heading based on the mode */}
+       <img src="/images/icons8-document.svg" className="note-icon" alt="note" />
+       {/* 4. Change the heading based on the mode */}
         <p>{existingNote ? 'Edit Note' : 'New Note'}</p>
       </div>
 
@@ -51,7 +51,7 @@ const NewNote = ({ onSaveNote, onCancelClick, existingNote }) => {
         onChange={(e) => setContent(e.target.value)}
       ></textarea>
       
-      <br/>
+      <hr/>
       <div className="button-container">
         {/* 5. Change the button text based on the mode */}
         <button className="btn" onClick={handleSubmit}>

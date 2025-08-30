@@ -1,7 +1,7 @@
-import React, { useState } from 'react'; // Import useState
+import React, {useState} from 'react'; 
 import './Home.css';
 
-const Home = ({ notes, onNewNoteClick, onDeleteNote, onEditNote }) => {
+const Home = ({notes, onNewNoteClick, onDeleteNote, onEditNote}) => {
   // 1. Create state for the search input
   const [searchText, setSearchText] = useState('');
 
@@ -18,7 +18,7 @@ const Home = ({ notes, onNewNoteClick, onDeleteNote, onEditNote }) => {
   return (
     <div className="container">
       <div className="header">
-        <img src="https://cdn.jsdelivr.net/npm/heroicons@v1.0.1/outline/document.svg" className="note-icon" alt="note" />
+        <img src="/images/icons8-document.svg" className="note-icon" alt="note" />
         <p>My Notes</p>
       </div>
 
@@ -27,17 +27,19 @@ const Home = ({ notes, onNewNoteClick, onDeleteNote, onEditNote }) => {
       <div className="top">
         <div className="search">
           
-<img src="https://cdn.jsdelivr.net/npm/heroicons@v1.0.1/outline/document.svg" className="note-icon" alt="note" />
+    <img src="/images/icons8-search.svg" className="search-icon" alt="search" />
+         
           {/* 3. Connect the input to the search state */}
           <input
             type="text"
+            id="searchInput"
             placeholder="Search your notes..."
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
         </div>
         <button className="btn" id="newNoteBtn" onClick={onNewNoteClick}>
-          + New Note
+          +  New Note
         </button>
       </div>
 
@@ -46,20 +48,22 @@ const Home = ({ notes, onNewNoteClick, onDeleteNote, onEditNote }) => {
       {/* 4. Use the FILTERED notes array instead of the original one */}
       {filteredNotes.length === 0 ? (
         <div className="nonote" id="noNotesAction">
-          <img src="https://cdn.jsdelivr.net/npm/heroicons@v1.0.1/outline/search.svg" className="search-icon" alt="Search" />
-          {/* 5. Change the message based on search */}
-          <p className="message">
-            {searchText ? 'No matching notes found' : 'No notes yet'}
-          </p>
-          <p className="subtitle">
-            {searchText ? 'Try a different search term' : 'Create your first note to get started'}
-          </p>
-          {!searchText && ( // Only show the button if we're not searching
-            <button className="input1" onClick={onNewNoteClick}>
-              + Create your first note
-            </button>
-          )}
-        </div>
+          
+      <img src="/images/icons8-document.svg" className="nonote-icon" alt="note" />
+
+        {/* 5. Change the message based on search */}
+        <p className="message">
+          {searchText ? 'No matching notes found' : 'No notes yet'}
+        </p>
+        <p className="subtitle">
+          {searchText ? 'Try a different search term' : 'Create your first note to get started'}
+        </p>
+        {!searchText && ( // Only show the button if we're not searching
+          <button className="input1" onClick={onNewNoteClick}>
+            +&nbsp;Create your first note
+          </button>
+        )}
+      </div>
       ) : (
         <div className="notes" id="notesList">
           {/* Map over the FILTERED notes */}
