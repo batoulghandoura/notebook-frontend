@@ -30,11 +30,14 @@ function App() {
         div className = "App" > {
             currentView === 'home' ? (
                 // 3. Pass the notes array and the function to change view to Home
+
+
                 <
                 Home notes = { notes }
                 onNewNoteClick = {
                     () => setCurrentView('new-note')
                 }
+                onDeleteNote = { handleDeleteNote }
                 />
             ) : (
                 // 4. Pass the function to save a new note and to cancel to NewNote
